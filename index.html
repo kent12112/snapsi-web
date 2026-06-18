@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snapsi — On-Demand Photography</title>
+  <meta name="description" content="Book a professional photographer near you in seconds. Snapsi connects travelers with local photographers for instant, same-day shoots." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #7C3AED;
+      --dark: #0F0F0F;
+      --mid: #1A1A1A;
+      --surface: #242424;
+      --light: #F5F5F5;
+      --muted: #888;
+      --border: #2A2A2A;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--light); }
+
+    hero {
+      display: block;
+      text-align: center;
+      padding: 100px 24px 80px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(124, 58, 237, 0.15);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    h1 span { color: var(--primary); }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto 48px;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-secondary { background: var(--surface); color: var(--light); border: 1px solid var(--border); }
+
+    .store-icon { width: 18px; height: 18px; }
+
+    .how {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 60px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .step {
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: left;
+    }
+
+    .step-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: rgba(124, 58, 237, 0.25);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .for-photographers {
+      background: var(--mid);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .for-photographers-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) {
+      .for-photographers-inner { grid-template-columns: 1fr; gap: 40px; }
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+    }
+
+    .for-photographers h2 { margin-bottom: 20px; text-align: left; }
+
+    .for-photographers p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .perks { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+    .perks li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--light);
+    }
+
+    .perk-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .earnings-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .earnings-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .earnings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .earnings-row:last-child { border-bottom: none; }
+    .earnings-row .label { color: var(--muted); }
+    .earnings-row .value { font-weight: 700; }
+    .earnings-row .value.green { color: #4ADE80; }
+    .earnings-row .value.muted { color: var(--muted); }
+
+    footer {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--light); }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="logo">Snapsi</span>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#photographers">Photographers</a></li>
+      <li><a href="/privacy">Privacy</a></li>
+    </ul>
+  </nav>
+
+  <hero>
+    <div class="badge">Now available on iOS</div>
+    <h1>Your personal<br /><span>photographer</span>,<br />on demand.</h1>
+    <p class="subtitle">Open the map, tap a nearby photographer, and get stunning photos delivered to your phone — in minutes.</p>
+    <div class="cta-group">
+      <a href="#" class="btn btn-primary">
+        <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on iOS
+      </a>
+      <a href="#how-it-works" class="btn btn-secondary">See how it works</a>
+    </div>
+  </hero>
+
+  <section class="how" id="how-it-works">
+    <p class="section-label">How it works</p>
+    <h2>Booked in under a minute</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Open the map</h3>
+        <p>See available photographers near you with live pricing.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Pick & book</h3>
+        <p>Choose a package, set your meeting point, pay securely.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Meet & shoot</h3>
+        <p>Your photographer arrives at the meeting point and the session begins.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Receive photos</h3>
+        <p>Edited photos delivered straight to your phone — same day.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="for-photographers" id="photographers">
+    <div class="for-photographers-inner">
+      <div>
+        <p class="section-label">For photographers</p>
+        <h2>Turn your camera into income</h2>
+        <p>Set your availability, define your travel radius, and let clients come to you. No agency cuts — just you and your work.</p>
+        <ul class="perks">
+          <li><span class="perk-dot"></span>Keep 90% of every booking</li>
+          <li><span class="perk-dot"></span>Set your own prices and packages</li>
+          <li><span class="perk-dot"></span>Choose how far you'll travel</li>
+          <li><span class="perk-dot"></span>Go live instantly — no approval wait</li>
+        </ul>
+      </div>
+      <div class="earnings-card">
+        <h3>Example earnings</h3>
+        <div class="earnings-row">
+          <span class="label">30-min session</span>
+          <span class="value">$50</span>
+        </div>
+        <div class="earnings-row">
+          <span class="label">Platform fee (10%)</span>
+          <span class="value muted">−$5</span>
+        </div>
+        <div class="earnings-row">
+          <span class="label">You receive</span>
+          <span class="value green">$45</span>
+        </div>
+        <div class="earnings-row">
+          <span class="label">Stripe processing</span>
+          <span class="value muted">Covered by platform</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="mailto:kentoyanagishita@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 Snapsi. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
