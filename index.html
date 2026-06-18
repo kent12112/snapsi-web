@@ -449,6 +449,131 @@
     footer a:hover { color: var(--light); }
     .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 16px; }
 
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(0,229,255,0.5); }
+      70%  { box-shadow: 0 0 0 8px rgba(0,229,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,229,255,0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Hero entrance */
+    .badge       { animation: fadeUp 0.6s ease both; animation-delay: 0.1s; }
+    h1           { animation: fadeUp 0.6s ease both; animation-delay: 0.2s; }
+    .subtitle    { animation: fadeUp 0.6s ease both; animation-delay: 0.35s; }
+    .cta-group   { animation: fadeUp 0.6s ease both; animation-delay: 0.5s; }
+    .hero-right  { animation: fadeUp 0.8s ease both; animation-delay: 0.2s; }
+
+    /* Phone float */
+    .phone { animation: float 4s ease-in-out infinite; }
+    .step:nth-child(2) .phone { animation-delay: 0.5s; }
+    .step:nth-child(3) .phone { animation-delay: 1s; }
+    .step:nth-child(4) .phone { animation-delay: 1.5s; }
+
+    /* Map pin pulse */
+    .map-pin { animation: pulse-ring 2s ease infinite; }
+    .map-pin:nth-child(3) { animation-delay: 0.6s; }
+    .map-pin:nth-child(4) { animation-delay: 1.2s; }
+
+    /* Tracking dot pulse */
+    .track-you { animation: pulse-ring 1.5s ease infinite; }
+    .track-dot { animation: blink 1.2s ease infinite; }
+
+    /* Scroll-reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Staggered children */
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal-stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+    .reveal-stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.12s; }
+    .reveal-stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.24s; }
+    .reveal-stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.36s; }
+    .reveal-stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.48s; }
+
+    /* Gallery shimmer on hover */
+    .photo-grid img {
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+    .photo-grid img:hover {
+      transform: scale(1.03);
+      filter: brightness(1.08);
+      z-index: 1;
+      position: relative;
+    }
+
+    /* Button hover glow */
+    .btn-primary {
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 24px rgba(0,229,255,0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Perk items stagger */
+    .perks li {
+      opacity: 0;
+      transform: translateX(-16px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .for-photographers.visible .perks li:nth-child(1) { opacity:1; transform:none; transition-delay:0.1s; }
+    .for-photographers.visible .perks li:nth-child(2) { opacity:1; transform:none; transition-delay:0.2s; }
+    .for-photographers.visible .perks li:nth-child(3) { opacity:1; transform:none; transition-delay:0.3s; }
+    .for-photographers.visible .perks li:nth-child(4) { opacity:1; transform:none; transition-delay:0.4s; }
+
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-right { min-height: 50vw; }
@@ -500,10 +625,10 @@
   </section>
 
   <!-- GALLERY -->
-  <section class="gallery">
+  <section class="gallery reveal">
     <p class="section-label">Real shots, real people</p>
     <h2>Photos worth posting</h2>
-    <div class="photo-grid">
+    <div class="photo-grid reveal-stagger">
       <img class="tall" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80&auto=format&fit=crop" alt="Person at viewpoint" />
       <img class="span2" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=80&auto=format&fit=crop" alt="Couple road trip" />
       <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80&auto=format&fit=crop" alt="Paris street" />
@@ -514,9 +639,9 @@
 
   <!-- HOW -->
   <section class="how" id="how-it-works">
-    <p class="section-label">How it works</p>
-    <h2>Booked in under a minute</h2>
-    <div class="steps">
+    <p class="section-label reveal">How it works</p>
+    <h2 class="reveal">Booked in under a minute</h2>
+    <div class="steps reveal-stagger">
 
       <div class="step">
         <div class="phone">
@@ -599,7 +724,7 @@
   <!-- FOR PHOTOGRAPHERS -->
   <section class="for-photographers" id="photographers">
     <div class="for-photographers-inner">
-      <div>
+      <div class="reveal-left">
         <p class="section-label">For photographers</p>
         <h2>Turn your camera into income</h2>
         <p>Set your availability, define your travel radius, and let clients come to you. No agency cuts — just you and your work.</p>
@@ -610,7 +735,7 @@
           <li><span class="perk-dot"></span>Go live instantly — no approval wait</li>
         </ul>
       </div>
-      <div class="earnings-card">
+      <div class="earnings-card reveal-right">
         <h3>Example earnings</h3>
         <div class="earnings-row">
           <span class="label">30-min session</span>
@@ -640,5 +765,22 @@
     <p>© 2026 Snapsi. All rights reserved.</p>
   </footer>
 
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // Also trigger for-photographers perks
+          if (e.target.closest('.for-photographers')) {
+            e.target.closest('.for-photographers').classList.add('visible');
+          }
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
