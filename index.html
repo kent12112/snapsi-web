@@ -28,43 +28,58 @@
       min-height: 100vh;
     }
 
+    /* NAV */
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 20px 40px;
       border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(15,15,15,0.85);
+      backdrop-filter: blur(12px);
+      z-index: 100;
     }
 
-    .logo {
-      font-size: 24px;
-      font-weight: 900;
-      color: var(--primary);
-      letter-spacing: -1px;
-    }
+    .logo { font-size: 24px; font-weight: 900; color: var(--primary); letter-spacing: -1px; }
 
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: var(--light); }
 
-    hero {
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 88vh;
+      align-items: center;
+    }
+
+    .hero-left {
+      padding: 80px 60px 80px 60px;
+    }
+
+    .hero-right {
+      position: relative;
+      height: 100%;
+      min-height: 88vh;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      text-align: center;
-      padding: 100px 24px 80px;
-      max-width: 720px;
-      margin: 0 auto;
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--dark) 0%, transparent 30%);
     }
 
     .badge {
@@ -82,7 +97,7 @@
     }
 
     h1 {
-      font-size: clamp(40px, 7vw, 72px);
+      font-size: clamp(40px, 5vw, 64px);
       font-weight: 900;
       line-height: 1.05;
       letter-spacing: -2px;
@@ -92,19 +107,14 @@
     h1 span { color: var(--primary); }
 
     .subtitle {
-      font-size: 18px;
+      font-size: 17px;
       color: var(--muted);
-      line-height: 1.6;
-      max-width: 500px;
-      margin: 0 auto 48px;
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 48px;
     }
 
-    .cta-group {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
 
     .btn {
       display: inline-flex;
@@ -119,17 +129,12 @@
     }
 
     .btn:hover { opacity: 0.88; transform: translateY(-1px); }
-
     .btn-primary { background: var(--primary); color: #0F0F0F; }
     .btn-secondary { background: var(--surface); color: var(--light); border: 1px solid var(--border); }
 
-    .store-icon { width: 18px; height: 18px; }
-
-    .how {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 80px 24px;
-      text-align: center;
+    /* GALLERY */
+    .gallery {
+      padding: 80px 40px;
     }
 
     .section-label {
@@ -139,13 +144,43 @@
       letter-spacing: 1px;
       color: var(--primary);
       margin-bottom: 12px;
+      text-align: center;
     }
 
     h2 {
       font-size: clamp(28px, 4vw, 40px);
       font-weight: 900;
       letter-spacing: -1px;
-      margin-bottom: 60px;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 12px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .photo-grid .span2 { grid-column: span 2; }
+    .photo-grid .tall   { grid-row: span 2; }
+
+    /* HOW */
+    .how {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
     }
 
     .steps {
@@ -165,23 +200,15 @@
     .step-num {
       font-size: 36px;
       font-weight: 900;
-      color: rgba(124, 58, 237, 0.25);
+      color: rgba(0, 229, 255, 0.2);
       line-height: 1;
       margin-bottom: 16px;
     }
 
-    .step h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
+    .step h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 14px; color: var(--muted); line-height: 1.5; }
 
-    .step p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
+    /* FOR PHOTOGRAPHERS */
     .for-photographers {
       background: var(--mid);
       border-top: 1px solid var(--border);
@@ -189,49 +216,30 @@
     }
 
     .for-photographers-inner {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 80px 24px;
+      padding: 80px 40px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 80px;
       align-items: center;
-    }
-
-    @media (max-width: 640px) {
-      .for-photographers-inner { grid-template-columns: 1fr; gap: 40px; }
-      nav { padding: 16px 20px; }
-      .nav-links { display: none; }
     }
 
     .for-photographers h2 { margin-bottom: 20px; text-align: left; }
-
-    .for-photographers p {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
+    .for-photographers p { color: var(--muted); font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
 
     .perks { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .perks li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; }
+    .perk-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
 
-    .perks li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--light);
+    .photographer-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 24px;
     }
 
-    .perk-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--primary);
-      flex-shrink: 0;
-    }
-
+    /* EARNINGS CARD */
     .earnings-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -260,9 +268,10 @@
     .earnings-row:last-child { border-bottom: none; }
     .earnings-row .label { color: var(--muted); }
     .earnings-row .value { font-weight: 700; }
-    .earnings-row .value.green { color: #4ADE80; }
+    .earnings-row .value.green { color: #00E5A0; }
     .earnings-row .value.muted { color: var(--muted); }
 
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 48px 24px;
@@ -274,6 +283,20 @@
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--light); }
     .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 16px; }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { min-height: 50vw; }
+      .hero-left { padding: 60px 24px 40px; }
+      .for-photographers-inner { grid-template-columns: 1fr; gap: 40px; }
+      .for-photographers h2 { text-align: center; }
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .photo-grid .span2 { grid-column: span 1; }
+      .photo-grid .tall { grid-row: span 1; }
+      .gallery { padding: 60px 20px; }
+    }
   </style>
 </head>
 <body>
@@ -287,19 +310,43 @@
     </ul>
   </nav>
 
-  <hero>
-    <div class="badge">Now available on iOS</div>
-    <h1>Your personal<br /><span>photographer</span>,<br />on demand.</h1>
-    <p class="subtitle">Open the map, tap a nearby photographer, and get stunning photos delivered to your phone — in minutes.</p>
-    <div class="cta-group">
-      <a href="#" class="btn btn-primary">
-        <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Download on iOS
-      </a>
-      <a href="#how-it-works" class="btn btn-secondary">See how it works</a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="badge">Now available on iOS</div>
+      <h1>Your personal<br /><span>photographer</span>,<br />on demand.</h1>
+      <p class="subtitle">Open the map, tap a nearby photographer, and get stunning photos delivered to your phone — in minutes.</p>
+      <div class="cta-group">
+        <a href="#" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download on iOS
+        </a>
+        <a href="#how-it-works" class="btn btn-secondary">See how it works</a>
+      </div>
     </div>
-  </hero>
+    <div class="hero-right">
+      <img
+        src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=900&q=85&auto=format&fit=crop"
+        alt="Photographer at work"
+        loading="eager"
+      />
+    </div>
+  </section>
 
+  <!-- GALLERY -->
+  <section class="gallery">
+    <p class="section-label">Delivered photos</p>
+    <h2>What you'll receive</h2>
+    <div class="photo-grid">
+      <img class="tall" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=85&auto=format&fit=crop" alt="Portrait" />
+      <img class="span2" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=900&q=85&auto=format&fit=crop" alt="Travel" />
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600&q=85&auto=format&fit=crop" alt="City" />
+      <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=85&auto=format&fit=crop" alt="Camera" />
+      <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=85&auto=format&fit=crop" alt="Paris" />
+    </div>
+  </section>
+
+  <!-- HOW -->
   <section class="how" id="how-it-works">
     <p class="section-label">How it works</p>
     <h2>Booked in under a minute</h2>
@@ -327,6 +374,7 @@
     </div>
   </section>
 
+  <!-- FOR PHOTOGRAPHERS -->
   <section class="for-photographers" id="photographers">
     <div class="for-photographers-inner">
       <div>
@@ -340,25 +388,11 @@
           <li><span class="perk-dot"></span>Go live instantly — no approval wait</li>
         </ul>
       </div>
-      <div class="earnings-card">
-        <h3>Example earnings</h3>
-        <div class="earnings-row">
-          <span class="label">30-min session</span>
-          <span class="value">$50</span>
-        </div>
-        <div class="earnings-row">
-          <span class="label">Platform fee (10%)</span>
-          <span class="value muted">−$5</span>
-        </div>
-        <div class="earnings-row">
-          <span class="label">You receive</span>
-          <span class="value green">$45</span>
-        </div>
-        <div class="earnings-row">
-          <span class="label">Stripe processing</span>
-          <span class="value muted">Covered by platform</span>
-        </div>
-      </div>
+      <img
+        class="photographer-img"
+        src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=700&q=85&auto=format&fit=crop"
+        alt="Photographer with camera"
+      />
     </div>
   </section>
 
