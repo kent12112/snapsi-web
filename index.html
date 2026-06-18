@@ -177,7 +177,7 @@
 
     /* HOW */
     .how {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 80px 24px;
       text-align: center;
@@ -185,25 +185,12 @@
 
     .steps {
       display: grid;
-      grid-template-columns: 1fr 32px 1fr 32px 1fr 32px 1fr;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       align-items: start;
-      gap: 0;
     }
 
     .step { text-align: center; }
-
-    .step-icon {
-      width: 72px;
-      height: 72px;
-      border-radius: 24px;
-      background: var(--primary-dim);
-      border: 1.5px solid var(--primary-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 30px;
-    }
 
     .step-num {
       display: inline-block;
@@ -215,16 +202,182 @@
       margin-bottom: 8px;
     }
 
-    .step h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; color: var(--light); }
-    .step p { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 180px; margin: 0 auto; }
+    .step h3 { font-size: 15px; font-weight: 800; margin-bottom: 6px; color: var(--light); }
+    .step p { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
-    .step-arrow {
+    /* Phone mockup */
+    .phone {
+      width: 140px;
+      height: 240px;
+      background: #111;
+      border-radius: 22px;
+      border: 2px solid #333;
+      margin: 0 auto 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    }
+
+    .phone::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 50%;
+      transform: translateX(-50%);
+      width: 36px; height: 5px;
+      background: #222;
+      border-radius: 3px;
+      z-index: 2;
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 0;
+      padding: 20px 8px 8px;
       display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding-top: 34px;
-      color: var(--primary-border);
-      font-size: 22px;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* Screen 1 — Map */
+    .screen-map { background: #1a2a1a; }
+    .map-grid {
+      flex: 1;
+      position: relative;
+      border-radius: 8px;
+      background: #1e2e1e;
+      overflow: hidden;
+    }
+    .map-road-h {
+      position: absolute;
+      left: 0; right: 0;
+      height: 6px;
+      background: #2a3a2a;
+    }
+    .map-road-v {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 6px;
+      background: #2a3a2a;
+    }
+    .map-pin {
+      position: absolute;
+      width: 22px; height: 22px;
+      border-radius: 11px;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 900; color: #000;
+      box-shadow: 0 0 8px rgba(0,229,255,0.5);
+    }
+    .map-search {
+      height: 18px;
+      background: #222;
+      border-radius: 6px;
+    }
+
+    /* Screen 2 — Booking */
+    .screen-book { background: #0f0f0f; }
+    .book-avatar {
+      width: 32px; height: 32px; border-radius: 16px;
+      background: var(--primary-dim);
+      border: 1.5px solid var(--primary-border);
+      margin: 0 auto 4px;
+    }
+    .book-name {
+      height: 7px; width: 60%; background: #333; border-radius: 4px; margin: 0 auto 8px;
+    }
+    .book-card {
+      background: #1a1a1a;
+      border: 1px solid #2c2c2c;
+      border-radius: 8px;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .book-card-dot {
+      width: 6px; height: 6px; border-radius: 3px;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+    .book-card-line { flex: 1; height: 5px; background: #333; border-radius: 3px; }
+    .book-price { width: 28px; height: 5px; background: var(--primary-dim); border-radius: 3px; }
+    .book-btn {
+      height: 20px;
+      background: var(--primary);
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+
+    /* Screen 3 — Tracking */
+    .screen-track { background: #0f0f0f; }
+    .track-status {
+      background: var(--primary-dim);
+      border: 1px solid var(--primary-border);
+      border-radius: 8px;
+      padding: 6px;
+      margin-bottom: 6px;
+    }
+    .track-dot-row { display: flex; gap: 4px; align-items: center; margin-bottom: 4px; }
+    .track-dot { width: 6px; height: 6px; border-radius: 3px; background: var(--primary); }
+    .track-label { height: 5px; width: 70%; background: var(--primary-dim); border-radius: 3px; }
+    .track-sub { height: 4px; width: 90%; background: #222; border-radius: 3px; }
+    .track-map {
+      flex: 1;
+      background: #1e2e1e;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .track-you {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      width: 10px; height: 10px;
+      border-radius: 5px;
+      background: var(--primary);
+      box-shadow: 0 0 6px rgba(0,229,255,0.6);
+    }
+    .track-them {
+      position: absolute;
+      top: 30px; right: 30px;
+      width: 8px; height: 8px;
+      border-radius: 4px;
+      background: var(--accent);
+    }
+    .track-line {
+      position: absolute;
+      bottom: 24px; left: 28px;
+      width: 60px; height: 1px;
+      background: rgba(0,229,255,0.3);
+      transform: rotate(-40deg);
+      transform-origin: left center;
+    }
+
+    /* Screen 4 — Photos delivered */
+    .screen-photos { background: #0f0f0f; }
+    .photos-label { height: 6px; width: 50%; background: var(--primary-dim); border-radius: 3px; margin-bottom: 6px; }
+    .photos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3px;
+      flex: 1;
+    }
+    .photo-thumb {
+      border-radius: 4px;
+      background: #222;
+      aspect-ratio: 1;
+    }
+    .photo-thumb:nth-child(1) { background: #2a2020; }
+    .photo-thumb:nth-child(2) { background: #202a20; }
+    .photo-thumb:nth-child(3) { background: #20202a; }
+    .photo-thumb:nth-child(4) { background: #2a2520; }
+    .photo-thumb:nth-child(5) { background: #25202a; }
+    .photo-thumb:nth-child(6) { background: #202525; }
+    .photos-save {
+      height: 18px;
+      background: var(--primary);
+      border-radius: 9px;
+      margin-top: 6px;
     }
 
     /* FOR PHOTOGRAPHERS */
@@ -308,8 +461,7 @@
       .photo-grid .span2 { grid-column: span 1; }
       .photo-grid .tall { grid-row: span 1; }
       .gallery { padding: 60px 20px; }
-      .steps { grid-template-columns: 1fr; gap: 32px; }
-      .step-arrow { padding-top: 0; transform: rotate(90deg); }
+      .steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
     }
   </style>
 </head>
@@ -365,33 +517,82 @@
     <p class="section-label">How it works</p>
     <h2>Booked in under a minute</h2>
     <div class="steps">
+
       <div class="step">
-        <div class="step-icon">📍</div>
+        <div class="phone">
+          <div class="phone-screen screen-map">
+            <div class="map-search"></div>
+            <div class="map-grid">
+              <div class="map-road-h" style="top:40%"></div>
+              <div class="map-road-h" style="top:70%"></div>
+              <div class="map-road-v" style="left:30%"></div>
+              <div class="map-road-v" style="left:65%"></div>
+              <div class="map-pin" style="top:28%;left:22%">$40</div>
+              <div class="map-pin" style="top:55%;left:50%">$65</div>
+              <div class="map-pin" style="top:20%;left:60%">$30</div>
+            </div>
+          </div>
+        </div>
         <div class="step-num">Step 1</div>
         <h3>Open the map</h3>
-        <p>See photographers available near you right now, with live pricing.</p>
+        <p>See photographers near you with live pricing.</p>
       </div>
-      <div class="step-arrow">→</div>
+
       <div class="step">
-        <div class="step-icon">💳</div>
+        <div class="phone">
+          <div class="phone-screen screen-book">
+            <div class="book-avatar"></div>
+            <div class="book-name"></div>
+            <div class="book-card"><div class="book-card-dot"></div><div class="book-card-line"></div><div class="book-price"></div></div>
+            <div class="book-card"><div class="book-card-dot"></div><div class="book-card-line"></div><div class="book-price"></div></div>
+            <div class="book-card" style="border-color:var(--primary);background:var(--primary-dim)"><div class="book-card-dot"></div><div class="book-card-line" style="background:var(--primary-dim)"></div><div class="book-price" style="background:var(--primary)"></div></div>
+            <div class="book-btn"></div>
+          </div>
+        </div>
         <div class="step-num">Step 2</div>
         <h3>Pick & book</h3>
-        <p>Choose a package, drop a pin for the meeting spot, pay securely.</p>
+        <p>Choose a package and pay securely in seconds.</p>
       </div>
-      <div class="step-arrow">→</div>
+
       <div class="step">
-        <div class="step-icon">📸</div>
+        <div class="phone">
+          <div class="phone-screen screen-track">
+            <div class="track-status">
+              <div class="track-dot-row"><div class="track-dot"></div><div class="track-label"></div></div>
+              <div class="track-sub"></div>
+            </div>
+            <div class="track-map" style="flex:1">
+              <div class="track-line"></div>
+              <div class="track-you"></div>
+              <div class="track-them"></div>
+            </div>
+          </div>
+        </div>
         <div class="step-num">Step 3</div>
         <h3>Meet & shoot</h3>
-        <p>Your photographer meets you and captures the moment.</p>
+        <p>Track your photographer live as they head to you.</p>
       </div>
-      <div class="step-arrow">→</div>
+
       <div class="step">
-        <div class="step-icon">🖼️</div>
+        <div class="phone">
+          <div class="phone-screen screen-photos">
+            <div class="photos-label"></div>
+            <div class="photos-grid">
+              <div class="photo-thumb"></div>
+              <div class="photo-thumb"></div>
+              <div class="photo-thumb"></div>
+              <div class="photo-thumb"></div>
+              <div class="photo-thumb"></div>
+              <div class="photo-thumb"></div>
+            </div>
+            <div class="photos-save"></div>
+          </div>
+        </div>
         <div class="step-num">Step 4</div>
         <h3>Get your photos</h3>
-        <p>Photos land in the app within minutes. Save to camera roll.</p>
+        <p>Photos delivered to the app. Save to camera roll.</p>
       </div>
+
     </div>
   </section>
 
