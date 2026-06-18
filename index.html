@@ -232,13 +232,6 @@
     .perks li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; }
     .perk-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
 
-    .photographer-img {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      border-radius: 24px;
-    }
-
     /* EARNINGS CARD */
     .earnings-card {
       background: var(--surface);
@@ -338,11 +331,11 @@
     <p class="section-label">Real shots, real people</p>
     <h2>Photos worth posting</h2>
     <div class="photo-grid">
-      <img class="tall" src="https://images.unsplash.com/photo-1516815231560-8f41ec531527?w=600&q=80&auto=format&fit=crop" alt="Couple outdoors" />
-      <img class="span2" src="https://images.unsplash.com/photo-1520466809213-7b9a56adcd45?w=900&q=80&auto=format&fit=crop" alt="Friends at beach" />
-      <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=600&q=80&auto=format&fit=crop" alt="Person in city" />
-      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e8?w=600&q=80&auto=format&fit=crop" alt="Woman casual portrait" />
-      <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80&auto=format&fit=crop" alt="Man in city" />
+      <img class="tall" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80&auto=format&fit=crop" alt="Person at viewpoint" />
+      <img class="span2" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=80&auto=format&fit=crop" alt="Couple road trip" />
+      <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80&auto=format&fit=crop" alt="Paris street" />
+      <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80&auto=format&fit=crop" alt="Venice" />
+      <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=600&q=80&auto=format&fit=crop" alt="Woman traveling" />
     </div>
   </section>
 
@@ -388,11 +381,25 @@
           <li><span class="perk-dot"></span>Go live instantly — no approval wait</li>
         </ul>
       </div>
-      <img
-        class="photographer-img"
-        src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=700&q=80&auto=format&fit=crop"
-        alt="Person in city street"
-      />
+      <div class="earnings-card">
+        <h3>Example earnings</h3>
+        <div class="earnings-row">
+          <span class="label">30-min session</span>
+          <span class="value">$50</span>
+        </div>
+        <div class="earnings-row">
+          <span class="label">Platform fee (10%)</span>
+          <span class="value muted">−$5</span>
+        </div>
+        <div class="earnings-row">
+          <span class="label">You receive</span>
+          <span class="value green">$45</span>
+        </div>
+        <div class="earnings-row">
+          <span class="label">Stripe processing</span>
+          <span class="value muted">Covered by platform</span>
+        </div>
+      </div>
     </div>
   </section>
 
