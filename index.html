@@ -52,37 +52,33 @@
 
     /* HERO */
     .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      min-height: 88vh;
-      align-items: center;
-    }
-
-    .hero-left {
-      padding: 80px 60px 80px 60px;
-    }
-
-    .hero-right {
       position: relative;
-      height: 100%;
       min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
+      padding: 100px 24px 80px;
     }
 
-    .hero-right img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .hero-right::after {
+    .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, var(--dark) 0%, transparent 30%);
+      background: radial-gradient(ellipse 55% 65% at center, rgba(15,15,15,0.88) 0%, rgba(15,15,15,0.35) 55%, transparent 82%);
+      z-index: 5;
+      pointer-events: none;
     }
+
+    .hero-center {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 740px;
+    }
+
+    .hero-center .subtitle { margin: 0 auto 48px; }
+    .hero-center .cta-group { justify-content: center; }
 
     .badge {
       display: inline-block;
@@ -249,24 +245,87 @@
       text-align: center;
     }
 
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: 260px 260px;
-      gap: 12px;
-      max-width: 1100px;
-      margin: 0 auto;
+    /* Story strip */
+    .story-strip-outer {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%);
+      padding: 8px 0 20px;
     }
-
-    .photo-grid img {
+    .story-strip {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+      animation: storyScroll 32s linear infinite;
+      padding: 4px 6%;
+    }
+    .story-strip:hover { animation-play-state: paused; }
+    @keyframes storyScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .story-ring {
+      flex-shrink: 0;
+      padding: 3px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+    .story-card {
+      width: 165px;
+      height: 292px;
+      border-radius: 25px;
+      overflow: hidden;
+      position: relative;
+      background: #111;
+    }
+    .story-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.45s ease;
     }
-
-    .photo-grid .span2 { grid-column: span 2; }
-    .photo-grid .tall   { grid-row: span 2; }
+    .story-ring:hover .story-card img { transform: scale(1.05); }
+    .story-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, transparent 38%, transparent 55%, rgba(0,0,0,0.68) 100%);
+      pointer-events: none;
+    }
+    .story-header {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      z-index: 2;
+    }
+    .story-location {
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+    }
+    .story-footer {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      z-index: 2;
+    }
+    .story-caption {
+      color: rgba(255,255,255,0.95);
+      font-size: 12px;
+      font-style: italic;
+      line-height: 1.4;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.9);
+    }
+    .story-likes {
+      color: rgba(255,255,255,0.65);
+      font-size: 11px;
+      margin-top: 5px;
+    }
 
     /* HOW */
     .how {
@@ -671,43 +730,17 @@
     .pain-card.solution p  { color: rgba(240,240,240,0.75); }
     .proof-label {
       text-align: center;
-      font-size: 13px;
-      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--light);
       margin: 32px 0 24px;
-      font-style: italic;
-      letter-spacing: 0.2px;
+      letter-spacing: -0.3px;
+    }
+    .proof-label em {
+      color: var(--primary);
+      font-style: normal;
     }
 
-    /* Photo grid with location hover */
-    .photo-grid .photo-wrap {
-      position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-    }
-    .photo-grid .photo-wrap img {
-      transition: transform 0.4s ease, filter 0.4s ease;
-    }
-    .photo-grid .photo-wrap:hover img {
-      transform: scale(1.05);
-      filter: brightness(0.7);
-    }
-    .photo-location {
-      position: absolute;
-      bottom: 14px;
-      left: 14px;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 999px;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      backdrop-filter: blur(10px);
-      letter-spacing: 0.3px;
-    }
-    .photo-wrap:hover .photo-location { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 768px) {
       .pain-cards { grid-template-columns: 1fr; }
@@ -771,8 +804,9 @@
       background: #f8f7f4;
       padding: 8px 8px 30px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.35);
-      width: clamp(130px, 14.5vw, 196px);
+      width: 160px;
       z-index: 1;
+      overflow: hidden;
       transition: box-shadow 0.35s ease, filter 0.35s ease;
       will-change: transform;
     }
@@ -783,9 +817,17 @@
       z-index: 10 !important;
     }
 
-    .polaroid img {
+    .pol-img-wrap {
       width: 100%;
-      height: clamp(95px, 10.5vw, 148px);
+      height: 116px;
+      overflow: hidden;
+      position: relative;
+    }
+    .polaroid img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
     }
@@ -797,33 +839,38 @@
       margin-top: 7px;
       font-family: 'Courier New', monospace;
       letter-spacing: 0.4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .pol-1 { top: 5%;    left: 6%;   z-index: 3; animation: polFloat1 7s   ease-in-out infinite; }
-    .pol-2 { top: 7%;    right: 4%;  z-index: 2; animation: polFloat2 8.5s ease-in-out infinite; animation-delay: -2.5s; }
-    .pol-3 { top: 36%;   left: 25%;  z-index: 4; animation: polFloat3 6.8s ease-in-out infinite; animation-delay: -4s; }
-    .pol-4 { bottom: 8%; left: 4%;   z-index: 2; animation: polFloat4 9.2s ease-in-out infinite; animation-delay: -1.2s; }
-    .pol-5 { bottom: 5%; right: 3%;  z-index: 3; animation: polFloat5 7.8s ease-in-out infinite; animation-delay: -3.5s; }
+    .pol-1 { top: 6%;    left:  13%;  z-index: 3; width: 150px; animation: polFloat1 7s   ease-in-out infinite; }
+    .pol-2 { top: 2%;    right: 10%;  z-index: 2; width: 170px; animation: polFloat2 8.5s ease-in-out infinite; animation-delay: -2.5s; }
+    .pol-3 { top: 54%;   left:  9%;   z-index: 4; width: 140px; animation: polFloat3 6.8s ease-in-out infinite; animation-delay: -4s; }
+    .pol-4 { bottom: 5%; left:  27%;  z-index: 2; animation: polFloat4 9.2s ease-in-out infinite; animation-delay: -1.2s; }
+    .pol-5 { top: 46%;   right: 18%;  z-index: 3; animation: polFloat5 7.8s ease-in-out infinite; animation-delay: -3.5s; }
+    .pol-2 .pol-img-wrap { height: 126px; }
+    .pol-3 .pol-img-wrap { height: 104px; }
 
     @keyframes polFloat1 {
-      0%,100% { transform: rotate(-8deg) translateY(0px); }
-      50%      { transform: rotate(-6deg) translateY(-16px); }
+      0%,100% { transform: rotate(-13deg) translateY(0px); }
+      50%      { transform: rotate(-11deg) translateY(-16px); }
     }
     @keyframes polFloat2 {
-      0%,100% { transform: rotate(6deg) translateY(-8px); }
-      50%      { transform: rotate(8deg) translateY(10px); }
+      0%,100% { transform: rotate(5deg) translateY(-8px); }
+      50%      { transform: rotate(7deg) translateY(10px); }
     }
     @keyframes polFloat3 {
-      0%,100% { transform: rotate(-2deg) translateY(0px); }
-      50%      { transform: rotate(1deg) translateY(-14px); }
+      0%,100% { transform: rotate(-5deg) translateY(0px); }
+      50%      { transform: rotate(-3deg) translateY(-14px); }
     }
     @keyframes polFloat4 {
-      0%,100% { transform: rotate(-5deg) translateY(-6px); }
-      50%      { transform: rotate(-3deg) translateY(8px); }
+      0%,100% { transform: rotate(12deg) translateY(-6px); }
+      50%      { transform: rotate(14deg) translateY(8px); }
     }
     @keyframes polFloat5 {
-      0%,100% { transform: rotate(7deg) translateY(0px); }
-      50%      { transform: rotate(5deg) translateY(-18px); }
+      0%,100% { transform: rotate(9deg) translateY(0px); }
+      50%      { transform: rotate(7deg) translateY(-18px); }
     }
 
     /* STATS ROW */
@@ -877,18 +924,24 @@
     .for-photographers.visible .perks li:nth-child(4) { opacity:1; transform:none; transition-delay:0.4s; }
 
     @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-right { min-height: 50vw; }
-      .hero-left { padding: 60px 24px 40px; }
+      .hero { min-height: auto; padding: 155px 24px 60px; align-items: flex-start; }
+      .cities-marquee { padding: 18px 0; }
       .for-photographers-inner { grid-template-columns: 1fr; gap: 40px; }
       .for-photographers h2 { text-align: center; }
       nav { padding: 16px 20px; }
       .nav-links { display: none; }
-      .photo-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
-      .photo-grid .span2 { grid-column: span 1; }
-      .photo-grid .tall { grid-row: span 1; }
       .gallery { padding: 60px 20px; }
       .steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+
+      /* Mobile: only NYC and Bali */
+      .polaroid        { width: 108px; padding: 5px 5px 22px; }
+      .pol-img-wrap    { height: 76px; }
+      .pol-2           { display: none; }
+      .pol-3           { display: none; }
+      .pol-4           { display: none; }
+      .pol-1           { top: 3%;  left: 2%;  animation: none; transform: rotate(-13deg); }
+      .pol-5           { top: 66%; right: 2%; animation: none; transform: rotate(9deg); }
+      .subtitle        { text-shadow: 0 1px 12px rgba(0,0,0,0.95); }
     }
   </style>
 </head>
@@ -907,7 +960,29 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-left">
+
+    <div class="polaroid pol-1">
+      <div class="pol-img-wrap"><img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=400&q=80&auto=format&fit=crop" alt="Traveling" loading="eager" /></div>
+      <p class="pol-label">NYC, USA</p>
+    </div>
+    <div class="polaroid pol-2">
+      <div class="pol-img-wrap"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&q=80&auto=format&fit=crop" alt="Tokyo" loading="eager" /></div>
+      <p class="pol-label">Tokyo, Japan</p>
+    </div>
+    <div class="polaroid pol-3">
+      <div class="pol-img-wrap"><img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&q=80&auto=format&fit=crop" alt="Paris" loading="eager" /></div>
+      <p class="pol-label">Paris, France</p>
+    </div>
+    <div class="polaroid pol-4">
+      <div class="pol-img-wrap"><img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=400&q=80&auto=format&fit=crop" alt="Santorini" loading="eager" /></div>
+      <p class="pol-label">Santorini, Greece</p>
+    </div>
+    <div class="polaroid pol-5">
+      <div class="pol-img-wrap"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80&auto=format&fit=crop" alt="Bali" loading="eager" /></div>
+      <p class="pol-label">Bali, Indonesia</p>
+    </div>
+
+    <div class="hero-center">
       <h1>Find a photographer.<br />Show up. Shoot.<br /><span class="cycle-word">Share.</span></h1>
       <p class="subtitle">Open the map, pick a photographer near you, and head to their spot. No planning. No waiting. Just great photos.</p>
       <div class="cta-group">
@@ -918,30 +993,7 @@
         <a href="#how-it-works" class="btn btn-secondary">See how it works</a>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="photo-stack">
-        <div class="polaroid pol-1">
-          <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=400&q=80&auto=format&fit=crop" alt="Traveling" loading="eager" />
-          <p class="pol-label">NYC, USA</p>
-        </div>
-        <div class="polaroid pol-2">
-          <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&q=80&auto=format&fit=crop" alt="Tokyo" loading="eager" />
-          <p class="pol-label">Tokyo, Japan</p>
-        </div>
-        <div class="polaroid pol-3">
-          <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&q=80&auto=format&fit=crop" alt="Paris" loading="eager" />
-          <p class="pol-label">Paris, France</p>
-        </div>
-        <div class="polaroid pol-4">
-          <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=400&q=80&auto=format&fit=crop" alt="Santorini" loading="eager" />
-          <p class="pol-label">Santorini, Greece</p>
-        </div>
-        <div class="polaroid pol-5">
-          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80&auto=format&fit=crop" alt="Bali" loading="eager" />
-          <p class="pol-label">Bali, Indonesia</p>
-        </div>
-      </div>
-    </div>
+
   </section>
 
   <!-- CITIES MARQUEE -->
@@ -1029,48 +1081,172 @@
   <section class="why-section reveal">
     <p class="section-label">Why Snapsi exists</p>
     <h2>This trip deserves better<br/>than a front-camera selfie.</h2>
-    <p class="why-sub">Most travel photos are taken by one very stretched arm, a passing stranger, or a friend who already put their phone away.</p>
+    <p class="why-sub">You're somewhere incredible. But getting a great photo of yourself there? Nearly impossible — unless you know someone with a camera.</p>
 
     <div class="pain-cards reveal-stagger">
       <div class="pain-card">
         <span class="pain-emoji">🤳</span>
         <h4>The arm selfie</h4>
-        <p>You, or the view. It never fits both — and everyone knows it.</p>
+        <p>You or the view. Never both.</p>
       </div>
       <div class="pain-card">
         <span class="pain-emoji">😬</span>
-        <h4>The "got it!"</h4>
-        <p>One blurry shot. Eyes half-closed. Wrong angle. "That's fine, thanks."</p>
+        <h4>The stranger gamble</h4>
+        <p>One blurry shot. Wrong angle. "Thanks!" you say, dying inside.</p>
       </div>
       <div class="pain-card solution">
         <span class="pain-emoji">📍</span>
         <h4>With Snapsi</h4>
-        <p>A local pro. Best spot, best light. Photos in your camera roll before you leave the spot.</p>
+        <p>Find a photographer, go meet them. Best spot, best light. Photos delivered instantly to your camera roll.</p>
       </div>
     </div>
 
-    <p class="proof-label">The kind of photos you actually post →</p>
+    <p class="proof-label">Photos that make your followers ask <em>"wait, who took this?"</em></p>
 
-    <div class="photo-grid reveal-stagger">
-      <div class="photo-wrap tall">
-        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80&auto=format&fit=crop" alt="Viewpoint" />
-        <span class="photo-location">📍 Machu Picchu</span>
-      </div>
-      <div class="photo-wrap span2">
-        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=80&auto=format&fit=crop" alt="Road trip" />
-        <span class="photo-location">📍 Route 66, USA</span>
-      </div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80&auto=format&fit=crop" alt="Paris" />
-        <span class="photo-location">📍 Paris, France</span>
-      </div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80&auto=format&fit=crop" alt="Venice" />
-        <span class="photo-location">📍 Venice, Italy</span>
-      </div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80&auto=format&fit=crop" alt="Traveler" />
-        <span class="photo-location">📍 Lisbon, Portugal</span>
+    <div class="story-strip-outer reveal">
+      <div class="story-strip">
+        <!-- set 1 -->
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80&auto=format&fit=crop" alt="Machu Picchu" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Machu Picchu</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"worth every step of the hike"</p>
+              <p class="story-likes">♥ 2,419 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&q=80&auto=format&fit=crop" alt="Route 66" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Route 66, USA</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"3,000 miles, zero bad photos"</p>
+              <p class="story-likes">♥ 1,847 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=80&auto=format&fit=crop" alt="Paris" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Paris, France</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"she's never been more jealous"</p>
+              <p class="story-likes">♥ 3,102 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=80&auto=format&fit=crop" alt="Venice" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Venice, Italy</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"yes, it's actually that beautiful"</p>
+              <p class="story-likes">♥ 987 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&q=80&auto=format&fit=crop" alt="Lisbon" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Lisbon, Portugal</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"found my new favorite city"</p>
+              <p class="story-likes">♥ 1,203 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=400&q=80&auto=format&fit=crop" alt="NYC" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 New York, USA</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"the city did not disappoint"</p>
+              <p class="story-likes">♥ 4,561 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80&auto=format&fit=crop" alt="Bali" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Bali, Indonesia</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"everything they said and more"</p>
+              <p class="story-likes">♥ 2,788 likes</p>
+            </div>
+          </div>
+        </div>
+        <!-- set 2 (duplicate for infinite scroll) -->
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80&auto=format&fit=crop" alt="Machu Picchu" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Machu Picchu</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"worth every step of the hike"</p>
+              <p class="story-likes">♥ 2,419 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&q=80&auto=format&fit=crop" alt="Route 66" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Route 66, USA</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"3,000 miles, zero bad photos"</p>
+              <p class="story-likes">♥ 1,847 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=80&auto=format&fit=crop" alt="Paris" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Paris, France</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"she's never been more jealous"</p>
+              <p class="story-likes">♥ 3,102 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=80&auto=format&fit=crop" alt="Venice" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Venice, Italy</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"yes, it's actually that beautiful"</p>
+              <p class="story-likes">♥ 987 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&q=80&auto=format&fit=crop" alt="Lisbon" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Lisbon, Portugal</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"found my new favorite city"</p>
+              <p class="story-likes">♥ 1,203 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=400&q=80&auto=format&fit=crop" alt="NYC" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 New York, USA</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"the city did not disappoint"</p>
+              <p class="story-likes">♥ 4,561 likes</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-ring">
+          <div class="story-card">
+            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80&auto=format&fit=crop" alt="Bali" loading="lazy" />
+            <div class="story-header"><span class="story-location">📍 Bali, Indonesia</span></div>
+            <div class="story-footer">
+              <p class="story-caption">"everything they said and more"</p>
+              <p class="story-likes">♥ 2,788 likes</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
