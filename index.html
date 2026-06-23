@@ -75,6 +75,12 @@
       z-index: 10;
       text-align: center;
       max-width: 740px;
+      background: rgba(15, 15, 15, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 48px 52px 52px;
     }
 
     .hero-center .subtitle { margin: 0 auto 48px; }
@@ -95,7 +101,7 @@
     }
 
     h1 {
-      font-size: clamp(40px, 5vw, 64px);
+      font-size: clamp(36px, 4vw, 52px);
       font-weight: 900;
       line-height: 1.05;
       letter-spacing: -2px;
@@ -804,7 +810,7 @@
       background: #f8f7f4;
       padding: 8px 8px 30px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.35);
-      width: 160px;
+      width: 200px;
       z-index: 1;
       overflow: hidden;
       transition: box-shadow 0.35s ease, filter 0.35s ease;
@@ -819,7 +825,7 @@
 
     .pol-img-wrap {
       width: 100%;
-      height: 116px;
+      height: 148px;
       overflow: hidden;
       position: relative;
     }
@@ -844,13 +850,13 @@
       text-overflow: ellipsis;
     }
 
-    .pol-1 { top: 6%;    left:  13%;  z-index: 3; width: 150px; animation: polFloat1 7s   ease-in-out infinite; }
-    .pol-2 { top: 2%;    right: 10%;  z-index: 2; width: 170px; animation: polFloat2 8.5s ease-in-out infinite; animation-delay: -2.5s; }
-    .pol-3 { top: 54%;   left:  9%;   z-index: 4; width: 140px; animation: polFloat3 6.8s ease-in-out infinite; animation-delay: -4s; }
-    .pol-4 { bottom: 5%; left:  27%;  z-index: 2; animation: polFloat4 9.2s ease-in-out infinite; animation-delay: -1.2s; }
-    .pol-5 { top: 46%;   right: 18%;  z-index: 3; animation: polFloat5 7.8s ease-in-out infinite; animation-delay: -3.5s; }
-    .pol-2 .pol-img-wrap { height: 126px; }
-    .pol-3 .pol-img-wrap { height: 104px; }
+    .pol-1 { top: 6%;    left:  calc(13% - 30px); z-index: 3; width: 190px; animation: polFloat1 7s   ease-in-out infinite; }
+    .pol-2 { top: 2%;    right: calc(10% - 30px); z-index: 2; width: 210px; animation: polFloat2 8.5s ease-in-out infinite; animation-delay: -2.5s; }
+    .pol-3 { top: 54%;   left:  calc(9%  - 30px); z-index: 4; width: 175px; animation: polFloat3 6.8s ease-in-out infinite; animation-delay: -4s; }
+    .pol-4 { bottom: calc(5% - 30px); left:  calc(27% - 30px); z-index: 2; animation: polFloat4 9.2s ease-in-out infinite; animation-delay: -1.2s; }
+    .pol-5 { top: 46%;   right: calc(18% - 50px); z-index: 3; animation: polFloat5 7.8s ease-in-out infinite; animation-delay: -3.5s; }
+    .pol-2 .pol-img-wrap { height: 158px; }
+    .pol-3 .pol-img-wrap { height: 130px; }
 
     @keyframes polFloat1 {
       0%,100% { transform: rotate(-13deg) translateY(0px); }
@@ -924,8 +930,8 @@
     .for-photographers.visible .perks li:nth-child(4) { opacity:1; transform:none; transition-delay:0.4s; }
 
     @media (max-width: 768px) {
-      .hero { min-height: auto; padding: 155px 24px 60px; align-items: flex-start; }
-      .cities-marquee { padding: 18px 0; }
+      .hero { min-height: auto; padding: 155px 24px 150px; align-items: flex-start; }
+      .cities-marquee { padding: 40px 0; }
       .for-photographers-inner { grid-template-columns: 1fr; gap: 40px; }
       .for-photographers h2 { text-align: center; }
       nav { padding: 16px 20px; }
@@ -934,14 +940,15 @@
       .steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
 
       /* Mobile: only NYC and Bali */
-      .polaroid        { width: 108px; padding: 5px 5px 22px; }
-      .pol-img-wrap    { height: 76px; }
+      .polaroid        { width: 135px; padding: 5px 5px 22px; }
+      .pol-img-wrap    { height: 95px; }
       .pol-2           { display: none; }
       .pol-3           { display: none; }
       .pol-4           { display: none; }
       .pol-1           { top: 3%;  left: 2%;  animation: none; transform: rotate(-13deg); }
-      .pol-5           { top: 66%; right: 2%; animation: none; transform: rotate(9deg); }
+      .pol-5           { top: calc(66% + 100px); right: 2%; animation: none; transform: rotate(9deg); }
       .subtitle        { text-shadow: 0 1px 12px rgba(0,0,0,0.95); }
+      .hero-center     { padding: 32px 24px 36px; border-radius: 20px; }
     }
   </style>
 </head>
@@ -954,7 +961,6 @@
     <ul class="nav-links">
       <li><a href="#how-it-works">How it works</a></li>
       <li><a href="#photographers">Photographers</a></li>
-      <li><a href="/privacy">Privacy</a></li>
     </ul>
   </nav>
 
